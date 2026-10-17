@@ -80,9 +80,9 @@ The onboard storage contains a broad array of practical survival databases, educ
 
 ## Onboard Documentation & Local File References
 
-The vault includes built-in plain-text documentation stored directly in the root user environment (`/home/librarian/`) for immediate terminal access via text viewers like `less` or `cat`[cite: 14, 22]:
+The vault includes built-in plain-text documentation stored directly in the root user environment (`/home/librarian/`) for immediate terminal access via text viewers like `less` or `cat`:
 
-- **`README.txt`**: Serves as the primary field manual covering directory layouts (`/home/librarian/kiwix-library`), local static URL access (`http://kiwix.local:8080`), network troubleshooting, and emergency terminal navigation[cite: 14, 22].
+- **`README.txt`**: Serves as the primary field manual covering directory layouts (`/home/librarian/kiwix-library`), local static URL access (`http://kiwix.local:8080`), network troubleshooting, and emergency terminal navigation.
 - **`QUICK_COMMANDS.txt`**: A concise system command cheat sheet detailing service management (`sudo systemctl status kiwix.service`), interface IP checks (`hostname -I`), wireless network switching (`nmcli`), and the full ZIM catalog re-indexing command loop[cite: 13, 21].
 - **`SYSTEM_INFO.txt`**: Provides an explicit hardware specification breakdown detailing the Raspberry Pi Zero 2 W architecture, quad-core 64-bit ARM Cortex-A53 processor, 512 MB SDRAM, and storage configuration[cite: 15, 23].
 
