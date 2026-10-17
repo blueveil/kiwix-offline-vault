@@ -110,5 +110,5 @@ To protect against NAND flash charge leakage over multi-year dormant storage:
 - **Integrated Battery:** Explore adding an onboard UPS (Uninterruptible Power Supply) HAT or custom 18650 Li-ion battery bank for true portable power-on capability.
 
 **Hardware & Storage Architecture Upgrades**
-- **Non-SD Storage Media: Upgrade from MicroSD card storage to an M.2 NVMe or SATA SSD via USB/PCIe HAT for significantly higher read speeds, improved data retention, and superior endurance against corruption.
-- **SBC Upgrade: Transition to a higher-tier Single Board Computer (such as a Raspberry Pi 5 or a low-power x86 Mini PC) to allow running full graphical local browsers, indexing larger libraries, and hosting multi-user concurrent sessions effortlessly.
+- **Non-SD Storage Media:** Upgrade from MicroSD card storage to an M.2 NVMe or SATA SSD via USB/PCIe HAT for significantly higher read speeds, improved data retention, and superior endurance against corruption.
+- **SBC Upgrade:** Transition to a higher-tier Single Board Computer (such as a Raspberry Pi 5 or a low-power x86 Mini PC) to allow running full graphical local browsers, indexing larger libraries, and hosting multi-user concurrent sessions effortlessly.
