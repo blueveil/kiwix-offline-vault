@@ -59,17 +59,22 @@ The internal MicroSD card includes local plain-text documentation stored directl
 
 ## Included ZIM Files
 
-The onboard storage is split into two primary categories:
+The onboard storage contains a broad array of practical survival databases, educational tools, repair references, and more:
 
 ### Practical & Survival Knowledge
 - **Wikipedia (Full Archive):** Comprehensive database covering medicine, chemistry, agriculture, history, and engineering.
-- **Survival & DIY:** Specialized archives covering water purification, sanitation, WikiHow guides, and farming.
-- **Project Gutenberg:** Thousands of public-domain literature titles, classic novels, and historical texts.
+- **Medical & Emergency Reference:** MedlinePlus, MDWiki, Wikivet, IRP FAS Military Medicine, and Ready.gov.
+- **Survival, Repair & DIY:** Appropedia (sustainable tech), iFixit repair guides, USDA 2015 database, and ZIMgit guides (Food Preparation, Knots, Water).
+- **Project Gutenberg:** Multi-part LCC library archives containing thousands of classic literature titles, historical texts, and foundational books.
 
-### Miscellaneous
-- **Stardew Valley Wiki:** Farming schedules, crop yields, and crafting mechanics.
-- **Pokémon Wiki:** Move sets, creature indices, and battle mechanics.
-- **League of Legends Wiki:** Champion lore and statistical breakdowns.
+### STEM & Education
+- **PhET Interactive Simulations:** Science and mathematics simulation tools.
+- **Corey Schafer Python Tutorials:** Offline programming guides and references.
+- **Wiktionary & Wikivoyage:** Offline multi-language dictionary and global travel/geography guides.
+
+### Culture, Maps & Gaming Lore
+- **US Maps Archive:** Offline geography and topographical reference.
+- **Gaming Wikis:** Stardew Valley Wiki, Pokémon Wiki, Minecraft Wiki, and League of Legends Wiki.
 
 ---
 
@@ -111,4 +116,4 @@ To protect against NAND flash charge leakage over multi-year dormant storage:
 
 **Hardware & Storage Architecture Upgrades**
 - **Non-SD Storage Media:** Upgrade from MicroSD card storage to an M.2 NVMe or SATA SSD via USB/PCIe HAT for significantly higher read speeds, improved data retention, and superior endurance against corruption.
-- **SBC Upgrade:** Transition to a higher-tier Single Board Computer (such as a Raspberry Pi 5 or a low-power x86 Mini PC) to allow running full graphical local browsers, indexing larger libraries, and hosting multi-user concurrent sessions effortlessly.
+- **Computing Upgrade/Separate Project:** Transition to a better Computer (such as a Raspberry Pi 5 or a low-power x86 Mini PC) to allow running full graphical local browsers, indexing larger libraries, and hosting multi-user concurrent sessions effortlessly.
