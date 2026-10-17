@@ -57,11 +57,19 @@ The internal MicroSD card includes local plain-text documentation stored directl
 
 ---
 
-## Included ZIM Archives
+## Included ZIM Files
 
-The onboard storage is loaded with the following:
+The onboard storage is partitioned into two primary categories:
 
-### 1. Placeholder
+### 1. Practical
+* **Wikipedia (Full Archive):** Comprehensive database covering medicine, chemistry, agriculture, history, and engineering.
+* **Survival & DIY:** Specialized archives covering water purification, sanitation, and farming.
+* **Project Gutenberg:** Thousands of public-domain literature titles and historical texts.
+
+### 2. Culture & Entertainment
+* **Stardew Valley Wiki:** Farming schedules, crop yields, and crafting mechanics.
+* **Pokémon Wiki:** Move sets, creature indices, and game mechanics.
+* **League of Legends Wiki:** Champion lore and statistical breakdowns.
 
 ---
 
