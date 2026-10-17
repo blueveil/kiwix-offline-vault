@@ -13,11 +13,11 @@ This project provides an offline Wi-Fi hotspot broadcasting archived web content
 
 | Component | Description | Cost (USD) |
 | :--- | :--- | :--- |
-| **Core Compute** | Raspberry Pi Zero 2 W (with blue aluminum heatsink) | $15.00 |
-| **Storage** | 256GB MicroSD Card (SanDisk or Micro Center) | $25.00 |
-| **Enclosure** | Clear acrylic case with acrylic standoffs | $6.00 |
-| **Case & Shell** | Custom 3D-printed PETG hard case (~500g) with foam padding | $10.00 |
-| **Power System** | 5V USB-C Power Supply with inline switch + USB-C to Micro-USB adapter | $10.00 |
+| **Computer** | Raspberry Pi Zero 2 W | $15.00 |
+| **Storage** | 256GB Micro Center MicroSD Card | $25.00 |
+| **Case** | Clear acrylic case with acrylic standoffs | $6.00 |
+| **Box/Container** | Custom 3D-printed PETG hard case (~500g) with foam padding | $10.00 |
+| **Power** | 5V USB-C Power Supply with inline switch + USB-C to Micro-USB adapter | $10.00 |
 | **Cables & Extras** | Mini-HDMI to HDMI cable, Micro-USB OTG cable, SD adapter | $15.00 |
 | **Total Build Cost** | | **~$81.00** |
 
