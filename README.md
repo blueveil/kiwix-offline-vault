@@ -93,7 +93,7 @@ The setup is simple: install an OS, add a web server, copy in the archives, and 
 
 1. Flash Raspberry Pi OS Lite to the MicroSD card (user `librarian`, hostname `kiwix`, Wi-Fi configured).
 2. Install the Kiwix tools. `kiwix-serve` and `kiwix-manage` live in `/usr/local/bin`.
-3. Download the ZIM files from the [Kiwix library](https://library.kiwix.org) into `~/kiwix-library`.
+3. Download the ZIM files from the Kiwix [library](https://library.kiwix.org) into `~/kiwix-library`.
 4. Build the library index with `kiwix-manage` (see Re-indexing Library below).
 5. Run `kiwix-serve` as a systemd service on port 8080 so it starts at boot.
 6. Add the plain-text guides to the home directory (see Onboard Software & Guides above).
@@ -162,8 +162,8 @@ To protect against NAND flash charge leakage over multi-year dormant storage:
 ## Future Roadmap & Upgrades
 
 **Physical Enclosure & Hardware**
-- **New Storage Case:** Reprint or refine the outer PETG hard shell to optimize internal component fit and durability.
-- **Integrated Battery:** Explore adding an onboard UPS (Uninterruptible Power Supply) HAT or custom 18650 Li-ion battery bank for true portable power-on capability.
+- **New Storage Case:** Reprint or choose a new design for the outer PETG hard shell to optimize internal component fit and durability.
+- **Integrated Battery:** Explore adding an off-the-shelf or custom Li-ion battery bank for true portable power-on capability.
 
 **Separate, More Expensive Project**
 - **Computing & Storage Upgrade:** Transition to a better computer (such as a Raspberry Pi 5 or a low-power x86 Mini PC) with M.2 NVMe or SATA SSD storage for significantly higher read speeds, improved data retention, and superior endurance against corruption. This would also allow running full graphical local browsers, indexing larger libraries, and hosting multi-user concurrent sessions effortlessly. The Zero 2 W has no PCIe, so this is a new build rather than an upgrade, and the goal of this one is to stay as cheap as possible.
@@ -174,7 +174,7 @@ To protect against NAND flash charge leakage over multi-year dormant storage:
 
 - [Kiwix](https://kiwix.org) provides the server software and the ZIM archives.
 - Content comes from Wikipedia and the other Wikimedia projects, Project Gutenberg, iFixit, Appropedia, PhET, MedlinePlus, Ready.gov, FAS IRP, the USDA, WikiVet, MDWiki, Corey Schafer, and the Minecraft, Pokémon, Stardew Valley, and League of Legends wikis.
-- Each ZIM keeps its own license and attribution. Check each file on the [Kiwix library](https://library.kiwix.org).
+- Each ZIM keeps its own license and attribution. Check each file on the Kiwix [library](https://library.kiwix.org).
 - This repo does not include or redistribute any ZIM files.
 - **Case:** [Snaplock V3](https://makerworld.com/en/models/2168356-snaplock-v3) by [Hugo](https://makerworld.com/en/@Hugo) on MakerWorld, licensed under the MakerWorld Exclusive License. Printed in PETG using the model's customizer with these inside dimensions: [W x L x H mm, corner radius]. The model files are not included here; download them from MakerWorld.
 
