@@ -78,6 +78,16 @@ The onboard storage contains a broad array of practical survival databases, educ
 
 ---
 
+## Onboard Documentation & Local File References
+
+The vault includes built-in plain-text documentation stored directly in the root user environment (`/home/librarian/`) for immediate terminal access via text viewers like `less` or `cat`[cite: 14, 22]:
+
+- **`README.txt`**: Serves as the primary field manual covering directory layouts (`/home/librarian/kiwix-library`), local static URL access (`http://kiwix.local:8080`), network troubleshooting, and emergency terminal navigation[cite: 14, 22].
+- **`QUICK_COMMANDS.txt`**: A concise system command cheat sheet detailing service management (`sudo systemctl status kiwix.service`), interface IP checks (`hostname -I`), wireless network switching (`nmcli`), and the full ZIM catalog re-indexing command loop[cite: 13, 21].
+- **`SYSTEM_INFO.txt`**: Provides an explicit hardware specification breakdown detailing the Raspberry Pi Zero 2 W architecture, quad-core 64-bit ARM Cortex-A53 processor, 512 MB SDRAM, and storage configuration[cite: 15, 23].
+
+---
+
 ## Terminal Browsing & Local Media Playback
 
 When accessing the vault directly via a connected monitor and keyboard (without Wi-Fi clients), use lightweight command-line tools:
@@ -98,6 +108,13 @@ http://localhost:8080/content/
 ```
 - **In-Page Search:** Use the native w3m search function by pressing / to search through text lists directly on the screen.
 
+---
+
+## Re-indexing Library
+Whenever new ZIM files are added or deleted, regenerate the XML library index:   
+```bash
+cd ~/kiwix-library && rm -f library.xml && for f in *.zim; do kiwix-manage library.xml add "$f"; done && sudo systemctl restart kiwix.service
+```
 ---
 
 ## Backup & Maintenance
