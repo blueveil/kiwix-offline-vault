@@ -176,7 +176,7 @@ To protect against NAND flash charge leakage over multi-year dormant storage:
 - Content comes from Wikipedia and the other Wikimedia projects, Project Gutenberg, iFixit, Appropedia, PhET, MedlinePlus, Ready.gov, FAS IRP, the USDA, WikiVet, MDWiki, Corey Schafer, and the Minecraft, Pokémon, Stardew Valley, and League of Legends wikis.
 - Each ZIM keeps its own license and attribution. Check each file on the [Kiwix library](https://library.kiwix.org).
 - This repo does not include or redistribute any ZIM files.
-- **Case:** [Snaplock V3](https://makerworld.com/en/models/2168356-snaplock-v3) by _Hugo on MakerWorld, licensed under the MakerWorld Exclusive License. Printed in PETG using the model's customizer with these inside dimensions: [W x L x H mm, corner radius]. The model files are not included here; download them from MakerWorld.
+- **Case:** [Snaplock V3](https://makerworld.com/en/models/2168356-snaplock-v3) by [Hugo](https://makerworld.com/en/@Hugo) on MakerWorld, licensed under the MakerWorld Exclusive License. Printed in PETG using the model's customizer with these inside dimensions: [W x L x H mm, corner radius]. The model files are not included here; download them from MakerWorld.
 
 ---
 
