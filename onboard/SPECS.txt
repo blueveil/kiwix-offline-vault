@@ -1,0 +1,13 @@
+================================================================================
+HARDWARE & SYSTEM SPECIFICATIONS
+================================================================================
+BOARD           : Raspberry Pi Zero 2 W
+CPU             : Quad-core 64-bit ARM Cortex-A53 @ 1.0 GHz
+RAM             : 512 MB SDRAM
+STORAGE         : MicroSD Card (256 GB)
+PRIMARY USER    : librarian
+PORT            : 8080
+SERVICE         : kiwix-serve
+CONTAINER/BOX   : Custom 3D Printed Storage Vault
+INCLUDED CABLES : Mini-HDMI to HDMI Adapter, Micro-USB OTG Cable, Power Supply
+================================================================================

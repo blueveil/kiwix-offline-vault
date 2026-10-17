@@ -1,0 +1,90 @@
+================================================================================
+KIWIX OFFLINE LIBRARY (RASPBERRY PI ZERO 2 W)
+================================================================================
+
+*** HOW TO READ THIS FILE ***
+- SCROLL UP/DOWN : Use Up Arrow / Down Arrow or Page Up / Page Down
+- EXIT TO PROMPT : Press 'q' on your keyboard to close this viewer
+
+================================================================================
+
+This Raspberry Pi acts as a portable, offline Wikipedia and digital library hosting
+over 200 GB of information (encyclopedias, medical guides, literature, repair
+manuals, maps, textbooks, and simulations).
+
+An internet connection is NOT required. Traffic stays strictly on local Wi-Fi.
+
+[ DIRECTORY MAP ]
+--------------------------------------------------------------------------------
+/home/librarian/kiwix-library : Main folder storing all 30 ZIM knowledge archives
+/usr/local/bin/               : Location of Kiwix binaries (kiwix-serve, kiwix-manage)
+/etc/systemd/system/          : System directory holding kiwix.service configuration
+/etc/NetworkManager/          : Directory holding Wi-Fi network profiles
+
+[ SYSTEM ARCHITECTURE & COMPONENTS ]
+--------------------------------------------------------------------------------
+PRIMARY USER    : librarian
+DEFAULT PORT    : 8080 (Standard non-root HTTP web server port)
+ZIM FILES       : Highly compressed single-file web archives (.zim)
+LIBRARY MANIFEST: library.xml file generated to index all 200GB+ of ZIMs at once
+KIWIX SERVER    : Binary (kiwix-serve) that reads ZIM files and serves web pages
+SYSTEMD SERVICE : Background process (kiwix.service) running automatically on boot
+
+[ HOW TO ACCESS THE SERVER (EVERYDAY USE) ]
+--------------------------------------------------------------------------------
+1. Connect your phone, tablet, or computer to the same Wi-Fi network as the Pi.
+
+2. Open any web browser (Chrome, Safari, Firefox, Edge, Brave).
+
+3. Type either address into your browser address bar and hit Enter:
+
+   http://kiwix.local:8080
+
+   OR check current local IP (run 'hostname -I' on the Pi):
+   http://<YOUR-PI-IP>:8080  (Example: http://192.168.1.50:8080)
+
+   (Note: If kiwix.local fails to load, your router lacks local mDNS support;
+   use the IP address method instead.)
+
+[ MOVING TO A NEW WI-FI NETWORK ]
+--------------------------------------------------------------------------------
+1. Attach a display to Mini-HDMI and a keyboard to the Micro-USB OTG port.
+2. Scan nearby Wi-Fi networks : sudo nmcli device wifi list
+3. Connect to new network     : sudo nmcli device wifi connect "SSID" password "PASSWORD"
+4. Check new assigned IP      : hostname -I
+
+[ MANAGING & REINDEXING THE LIBRARY ]
+--------------------------------------------------------------------------------
+Whenever new .zim files are added or deleted, regenerate the XML library index:
+
+cd ~/kiwix-library && rm -f library.xml && for f in *.zim; do kiwix-manage library.xml add "$f"; done
+sudo systemctl restart kiwix.service
+
+[ NO-WIFI / EMERGENCY BACKUP ACCESS ]
+--------------------------------------------------------------------------------
+If Wi-Fi is unavailable, browse the library directly using an attached screen:
+
+1. Connect display to Mini-HDMI and keyboard to USB OTG port. Log in as 'librarian'.
+2. w3m (terminal browser) is preinstalled. If it was ever removed, reinstalling it
+   needs internet: sudo apt update && sudo apt install w3m -y
+3. Launch console web browser          : w3m http://localhost:8080
+
+NAVIGATION CHEAT SHEET & LIMITATIONS:
+- Arrow Keys / Tab : Move between links and text fields
+- Enter            : Select a link or submit a search
+- B                : Return to previous page
+- Shift + Q (then y): Quit w3m browser
+- LIMITATION NOTE  : w3m has no JavaScript engine. Text archives (Wikipedia)
+                     work great, but interactive simulations/Gutenberg may not.
+
+[ COMMON TROUBLESHOOTING & UTILITIES ]
+--------------------------------------------------------------------------------
+CHECK SERVICE STATUS : sudo systemctl status kiwix.service
+RESTART SERVER       : sudo systemctl restart kiwix.service
+STOP SERVER          : sudo systemctl stop kiwix.service
+VIEW LIVE LOGS       : sudo journalctl -u kiwix.service -n 20 --no-pager
+SAFE SHUTDOWN        : sudo shutdown -h now
+
+[ LOG ]
+--------------------------------------------------------------------------------
+LAST UPDATED     : 2026-10-17

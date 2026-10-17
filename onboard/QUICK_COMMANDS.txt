@@ -1,0 +1,13 @@
+================================================================================
+KIWIX QUICK COMMANDS CHEAT SHEET
+================================================================================
+
+1. CHECK STATUS OF SERVER : sudo systemctl status kiwix.service
+2. RESTART SERVER         : sudo systemctl restart kiwix.service
+3. VIEW NETWORK IP        : hostname -I
+4. CONNECT TO NEW WIFI    : sudo nmcli device wifi connect "SSID" password "PASS"
+5. SAFE SHUTDOWN          : sudo shutdown -h now
+
+REINDEX LIBRARY AFTER ADDING/REMOVING ZIM FILES:
+cd ~/kiwix-library && rm -f library.xml && for f in *.zim; do kiwix-manage library.xml add "$f"; done && sudo systemctl restart kiwix.service
+================================================================================

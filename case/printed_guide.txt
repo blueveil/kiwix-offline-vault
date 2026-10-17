@@ -1,0 +1,46 @@
+=================================================================
+                    K I W I X   L I B R A R Y
+=================================================================
+ Self-contained offline knowledge base hosting Wikipedia,
+ books, and reference archives with no internet required.
+=================================================================
+
+[ NETWORK ACCESS ]
+-----------------------------------------------------------------
+ 1. Connect phone or laptop to the same Wi-Fi network as the Pi.
+ 2. Open a browser -> http://kiwix.local:8080
+
+ * If kiwix.local does not load, use the Pi's IP address:
+   http://<PI-IP>:8080   (run 'hostname -I' on the Pi)
+ * Note: Allow ~60 seconds after power-on for full boot.
+
+[ TERMINAL / MONITOR ACCESS ]
+-----------------------------------------------------------------
+ * Connect mini-HDMI BEFORE powering on the Raspberry Pi.
+   Login: librarian  |  Password: (the one you set)
+
+
+[ POWER OFF ]
+-----------------------------------------------------------------
+ * Run: sudo shutdown -h now
+ * Wait for the green LED to stop blinking, THEN switch off
+   the power. Cutting power early can corrupt the SD card.
+
+
+[ USEFUL COMMANDS ] (Arrow keys to scroll, press 'q' to exit)
+-----------------------------------------------------------------
+ - Full Manual      : less README.txt
+ - Quick Commands   : less QUICK_COMMANDS.txt
+ - Hardware Specs   : less SPECS.txt
+ - Check IP Address : hostname -I
+ - Connect Wi-Fi    : sudo nmcli dev wifi connect "WifiName"
+                      password "Password"
+ - Terminal Browser : w3m http://localhost:8080
+ - Safe Shutdown    : sudo shutdown -h now
+
+[ ENCLOSED HARDWARE ]
+-----------------------------------------------------------------
+ - Raspberry Pi Zero 2 W       - USB-C to Micro-USB Adapter
+ - MicroSD Card                - Mini-HDMI to HDMI Cable
+ - 5V USB-C Power Supply       - Micro-USB OTG Cable
+=================================================================
