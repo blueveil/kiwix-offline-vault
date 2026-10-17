@@ -6,29 +6,25 @@ A dual-latch, 3D-printed PETG hard shell (~500g) with an internal foam pad. A la
 
 | Item | Details |
 | :--- | :--- |
-| Original design | <!-- TODO: MakerWorld link --> |
-| Original creator | <!-- TODO: creator name or handle --> |
-| Original license | <!-- TODO: check the license on the MakerWorld page --> |
-| My resized version | <!-- TODO: file name, e.g. kiwix-vault-case.3mf or .stl --> |
-| What I changed | <!-- TODO: what was resized and why --> |
-
-Only share your resized version here if the original license allows derivatives. If it does not, link the original and describe the changes instead.
+| Original design | [Snaplock V3](https://makerworld.com/en/models/2168356-snaplock-v3) |
+| Original creator | [Hugo](https://makerworld.com/en/@Hugo) |
+| Original license | MakerWorld Exclusive License (derivatives only on MakerWorld, attribution required, no commercial use) |
+| My version | Same model, customizer values: [W x L x H mm, corner radius]. |
 
 ## Print settings
 
 | Setting | Value |
 | :--- | :--- |
 | Material | PETG |
-| Printer | <!-- TODO --> |
-| Layer height | <!-- TODO --> |
-| Infill | <!-- TODO --> |
-| Supports | <!-- TODO --> |
-| Print time | <!-- TODO --> |
+| Printer | Ender 3 Pro |
+| Layer height | 0.16mm |
+| Infill | 100% |
+| Supports | Tree |
 | Weight | ~500g |
 
 ## Printed guide
 
-[printed_guide.txt](printed_guide.txt) is the text of the laminated sheet inside the lid. This copy has the password redacted and is the corrected version. The sheet currently in the case is the older one, so it still says "micro-HDMI" and does not have the power-off section. Reprint it when the case is next reprinted.
+[printed_guide.txt](printed_guide.txt) is the text of the laminated sheet inside the lid. This copy has the password redacted and is the corrected version. The sheet currently in the case is the older one, so it still says "micro-HDMI" and does not have the power-off section. To be reprinted.
 
 ## Photos
 
