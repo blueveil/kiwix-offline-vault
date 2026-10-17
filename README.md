@@ -1,6 +1,6 @@
 # Kiwix Offline Vault
 
-A self-contained, low-power offline knowledge base project using a Raspberry Pi Zero 2 W, housed in a 3D-printed hard shell. Preserves Wikipedia, WikiHow, Project Gutenberg, and emergency reference archives with zero internet required.
+An affordable, self-contained, and low-power offline knowledge base project using a Raspberry Pi Zero 2 W, housed in a 3D-printed hard shell. Preserves Wikipedia, WikiHow, Project Gutenberg, and emergency reference archives with zero internet required.
 
 * **Assembled:** 2026-08-15
 * **ZIM Archive Date:** 2026-08
