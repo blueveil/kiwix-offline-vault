@@ -1,11 +1,22 @@
 # Kiwix Offline Vault
 
-**Assembly Date:** 2026-08-15  
-**ZIM Archive Date:** 2026-08  
+A self-contained, low-power offline knowledge base project using a Raspberry Pi Zero 2 W, housed in a 3D-printed hard shell. Preserves Wikipedia, WikiHow, Project Gutenberg, and emergency reference archives with zero internet required.
 
-A low-power, portable, off-grid knowledge server built on a Raspberry Pi Zero 2 W running Raspberry Pi OS Lite and `kiwix-serve`.
+* **Assembled:** 2026-08-15
+* **ZIM Archive Date:** 2026-08
 
-This project provides an offline Wi-Fi hotspot broadcasting archived web content (Wikipedia, Project Gutenberg, survival manuals, and pop-culture wikis) to any device with a web browser. It also includes direct local terminal fallbacks for monitor and keyboard usage, along with local media playback capabilities.
+![Kiwix Vault Open](insert-image.jpg)
+
+---
+
+## Overview
+
+This project is a standalone offline digital library designed to broadcast a localized Wi-Fi hotspot serving curated `.zim` archives (Wikipedia, medical/survival databases, literature, and gaming lore). 
+
+Unlike heavy off-grid platforms or expensive proprietary prepper drives, this project focuses on:
+* **Minimal Power Consumption:** Runs on a 5V USB power supply or portable battery bank using a Raspberry Pi Zero 2 W.
+* **Physical Integration:** Custom 3D-printed case, dedicated cable layout, clear acrylic Pi protection, and laminated lid-mounted reference sheets.
+* **Zero-Friction Access:** Broadcasts an open Wi-Fi access point (`http://kiwix.local:8080`) accessible by any smartphone, tablet, or laptop.
 
 ---
 
@@ -23,20 +34,39 @@ This project provides an offline Wi-Fi hotspot broadcasting archived web content
 
 ---
 
-## System Architecture
+## Hardware Layout
 
-```text
-                      +-----------------------------------+
-                      |   Raspberry Pi Zero 2 W          |
-                      |   - Raspberry Pi OS Lite (Headless)|
-                      |   - NetworkManager (AP Mode)      |
-                      |   - kiwix-serve Systemd Service   |
-                      +-----------------+-----------------+
-                                        |
-                 +----------------------+----------------------+
-                 |                                             |
-                 v                                             v
-       [ Local Wi-Fi Access ]                        [ Direct Local Console ]
-   - SSID: KiwixVault                              - Mini-HDMI Display Output
-   - IP: 192.168.4.1:8080                          - Micro-USB OTG Keyboard Input
-   - Accessible via Phone, Tablet, Laptop          - Terminal Browser: w3m
+![Hardware Layout](insert-image.jpg)
+
+### Enclosed Hardware & Components
+* **Computer:** Raspberry Pi Zero 2 W with aluminum heatsink in a clear acrylic case with standoffs.
+* **Storage & OS:** MicroSD Card running Raspberry Pi OS Lite configured with `kiwix-serve`. Includes a full-size SD card adapter inside a protective plastic case.
+* **Power:** 5V USB-C Power Supply with inline toggle switch, paired with a USB-C to Micro-USB adapter.
+* **Display & IO:** Mini-HDMI to HDMI cable and Micro-USB OTG cable.
+* **Enclosure:** 3D-printed dual-latch hard shell with an internal foam pad and top-lid laminated reference guide.
+
+---
+
+## Onboard Software & Guides
+
+The internal MicroSD card includes local plain-text documentation stored directly in the home directory for terminal access via `less`:
+
+1. `README.txt`: Network setup, Wi-Fi access steps, and console configurations.
+2. `QUICK_COMMANDS.txt`: Command cheat sheet for terminal web browsing (`w3m`), Wi-Fi management (`nmcli`), and safe shutdown (`sudo shutdown -h now`).
+3. `SPECS.txt`: Complete breakdown of hardware specs and software environment.
+
+---
+
+## Included ZIM Archives
+
+The onboard storage is loaded with the following:
+
+### 1. Placeholder
+
+---
+
+## Backup & Maintenance
+
+To protect against NAND flash charge leakage over multi-year dormant storage:
+1. **Periodic Refresh:** Power on the unit once every 1–2 years for a few minutes to refresh flash memory cells.
+2. **SD Card Image Clone:** Full `.img` backup images can be created using `Win32DiskImager` (Windows) or `ApplePi-Baker` (Mac) and compressed into `.7z` archives for long-term storage.
