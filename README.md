@@ -9,7 +9,7 @@ This project provides an offline Wi-Fi hotspot broadcasting archived web content
 
 ---
 
-## Hardware Specifications & Cost Breakdown 🛠️
+## Hardware Specifications & Cost Breakdown
 
 | Component | Description | Cost (USD) |
 | :--- | :--- | :--- |
@@ -23,7 +23,7 @@ This project provides an offline Wi-Fi hotspot broadcasting archived web content
 
 ---
 
-## System Architecture ⚙️
+## System Architecture
 
 ```text
                       +-----------------------------------+
