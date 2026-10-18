@@ -20,6 +20,106 @@ Unlike heavy off-grid platforms or expensive proprietary prepper drives, this pr
 - **Access:** Any smartphone, tablet, or laptop on the same Wi-Fi network as the Pi can open `http://kiwix.local:8080` (or `http://<PI-IP>:8080` if the name does not resolve). No internet connection is needed, only a local network.
 
 ---
+## Project Goal
+
+The goal of this build is to be as affordable as possible while still being a useful offline library. At about $81, including the power supply, cables and printed case, it costs less than every pre-built option I found that can actually be ordered today. Every part was chosen as the cheapest one that works: a Raspberry Pi Zero 2 W, a microSD card instead of an SSD, an acrylic case, and a 3D-printed box. Features that cost more (a built-in battery, an SSD, a faster board) are left out on purpose and listed under Future Roadmap & Upgrades as a separate project.
+
+The one cheaper listing is the Wikimedia store's Internet-in-a-Box at $58. It is listed as sold out, it does not include a power supply, and ordering one through its partner costs more (see below). It also uses the same core hardware as this build, which is a good sign for the design.
+
+---
+
+## How It Compares
+
+Similar projects exist. Most are more capable and more expensive, and one (the Wikimedia Internet-in-a-Box) uses the same hardware. Prices were checked on 2026-10-17 and change often.
+
+| Project | What it is | Hardware | Approx. cost | Own Wi-Fi | Max users |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **This project** | DIY `kiwix-serve` on a Pi | Pi Zero 2 W, 256GB microSD | ~$81 total, with power supply and cables | No, joins an existing network <!-- TODO: update if the Pi check shows it broadcasts its own Wi-Fi --> | Not tested <!-- TODO: add the load test result --> |
+| **Internet-in-a-Box, pre-built** | Assembled unit from the Wikimedia store and Wiki Project Med Foundation | Pi Zero 2 W, 256GB microSD, 3D-printed case | $58 listed (sold out); $83 outside the US or $124.50 in the US when ordered from the partner; no power supply | Yes | 10 (listing) |
+| **Kiwix Hotspot** | Official pre-built device from Kiwix | Pi 5 (4GB), 256GB NVMe SSD, metal case | $300 (bundles $319 to $399) | Yes | Up to 24 |
+| **PrepperDisk** | Pre-built Pi device, or software on an SD card for your own Pi | Pi-based, 256GB or 512GB | ~$200 to $280 (software card alone $165) | Yes | About 20 |
+| **Internet-in-a-Box (IIAB), software** | Free software stack you install yourself | Raspberry Pi, or a PC running Linux | Free, plus your hardware | Yes | Up to 32 Wi-Fi clients on a Pi 4 or 5; its FAQ claims 32 on a Zero 2 W |
+| **Project NOMAD** | Free software server with optional local AI | x86 PC running Ubuntu or Debian (not a Pi) | Free, plus your hardware | Serves your existing network | Depends on hardware |
+| **RACHEL 5** | Pre-built education server from World Possible | 440GB SSD, built-in battery | $500 | Yes | 20 to 50 |
+
+The $124.50 US price for the Internet-in-a-Box includes a 50% surcharge for tariffs, according to the ordering page. The base unit is $68 plus $15 shipping.
+
+### Notes On Each
+
+- **Internet-in-a-Box, pre-built:** The closest match to this build: a Raspberry Pi Zero 2 W with a 256GB microSD card in a 3D-printed case. It differs in four ways. It broadcasts its own Wi-Fi network, it ships assembled with English and Spanish Wikipedia, MDWiki and low-resolution maps, it lists support for 10 users, and it leaves out the power supply. Without the power supply and cables ($25), the parts in this build come to $56, about the same as the $58 listing. This build has a broader mix of content and includes everything needed to run it.
+- **Kiwix Hotspot:** The closest relative, built on the same Kiwix software I use. It is plug-and-play, draws about 4 to 9 watts, and has an admin panel for adding content. It costs about 3.7 times as much as this build.
+- **PrepperDisk:** Focused on preppers, with Wikipedia, maps, WikiHow, medical references, Project Gutenberg, iFixit and survival books. Sources disagree on the exact Pi model, so check before buying.
+- **IIAB, software:** Runs a much larger set of apps than a single `kiwix-serve` service, including nearly 40 apps and optional learning platforms such as Kolibri, Moodle and Nextcloud, so it is a bigger setup. It installs on a Raspberry Pi, or on a Linux PC. I have not tried installing it myself.
+- **Project NOMAD:** Free and open source (Apache 2.0). It bundles Kiwix, maps and Kolibri courses, with an optional AI assistant that runs locally. It is built for a standard PC, not a Raspberry Pi, and the full library fits comfortably on a 1TB drive.
+- **RACHEL 5:** Aimed at schools and classrooms, with Khan Academy content and a teacher upload portal. The vendor says it is not meant to stay plugged in constantly.
+
+### This Build vs the IIAB Software
+
+This build runs one service, `kiwix-serve`, plus `w3m` as a local fallback. The IIAB software wraps the same kind of content in a larger system.
+
+| | This build | IIAB software |
+| :--- | :--- | :--- |
+| Content server | `kiwix-serve` on port 8080 | Kiwix behind an NGINX proxy, plus other apps |
+| Hotspot and network tools | None, joins an existing network | Built in (`iiab-hotspot-on`, `iiab-network`, `iiab-test-wifi`) |
+| Admin | Terminal and plain-text guides | Web admin console |
+| Extra apps | None | Kolibri, Moodle, Calibre-Web, Nextcloud and more |
+| Captive portal and short address | `kiwix.local` or the Pi's IP | `box`, `box.lan` or `10.10.10.10`, with an optional captive portal |
+| Setup effort | Low: a service file and some guides | Higher: a one-line installer, then configuration |
+| Memory | Light | Fine on 512MB for static content; its FAQ recommends 2 to 4GB for heavy use |
+
+IIAB's own FAQ says the Zero W and Zero 2 W "work great as learning kiosks, despite their meager 512MB RAM." That supports the hardware choice here.
+
+### Hotspot Option
+
+This build currently joins an existing Wi-Fi network, so it needs a router or a phone hotspot nearby. Turning the Pi into its own hotspot looks possible on the same hardware, because the Wikimedia Internet-in-a-Box does it on a Zero 2 W. I have not tried it on this build. Things to know before switching:
+
+- The Pi has one Wi-Fi radio. As a hotspot it cannot also join another network. IIAB's FAQ says running both at once (AP+STA) is not supported by all firmware and "can sometimes be severely degraded even when it is working."
+- SSH over Wi-Fi to the Pi would stop working while it is a hotspot. Management would need a screen and keyboard, or a connection through the hotspot itself.
+- The address changes. `kiwix.local` may or may not resolve, so a fixed address on the hotspot would be the safe choice.
+- Reports of the plain `nmcli device wifi hotspot` command on a Zero 2 W are mixed. A persistent access point profile is reported to work on Raspberry Pi OS Bookworm.
+<!-- TODO: after testing on the Pi, replace this section with the result and the exact steps that worked. -->
+
+### Capacity
+
+How many people can read at once is not tested on this build. What is known:
+
+- The Wikimedia Internet-in-a-Box lists 10 simultaneous users on the same board and card size, without saying why.
+- The IIAB FAQ says a Zero (2) W "is able to serve 32 students simultaneously" and that the hotspot on a Pi 4 or 5 supports up to 32 Wi-Fi clients. That is a claim in a FAQ, not a published test.
+- The FAQ names many people running full-text searches of Wikipedia at the same time as the heavy case. Reading articles is much lighter than searching.
+- This build serves devices through a router, so the router handles the Wi-Fi connections. My expectation is that the Pi's CPU, memory and SD card speed set the limit instead, but I have not tested that.
+<!-- TODO: add the load test result: how many devices, what they did, search times, peak memory and CPU. -->
+
+### What This Project Gives Up
+
+- No built-in battery, SSD, or admin panel.
+- Fewer simultaneous users than the larger pre-built options, most likely. The Wikimedia unit lists 10 on the same Pi Zero 2 W, which is a reasonable ceiling to expect.
+- No hotspot yet, so it needs a router or similar network nearby. A hotspot is a software setting rather than a hardware limit, but it is untested here. <!-- TODO: update after the Pi check -->
+- No support or warranty. The setup and fixes are on you.
+- The $81 does not include the Wi-Fi network you connect through.
+
+### What It Gives You
+
+- A low cost that includes everything: power supply with a switch, cables, adapters and case. The Wikimedia unit leaves out the power supply, and ordering one costs $83 outside the US and $124.50 in the US.
+- A setup you can fully understand: one web server, one service file, plain-text guides.
+- A broader mix of content than the starter set: repair guides, emergency references, Project Gutenberg books, and more.
+- Very low power use, which suits a USB power bank.
+- A starting point you can grow: the same ZIM files work on Kiwix Hotspot, a Pi 5, or a mini PC if you outgrow the Zero 2 W.
+
+### Sources
+
+- [Internet-in-a-Box](https://internet-in-a-box.org/)
+- [Internet-in-a-Box, Wikimedia Store listing](https://store.wikimedia.org/products/internet-in-a-box)
+- [Internet-in-a-Box, ordering from Wiki Project Med Foundation](https://mdwiki.org/wiki/WikiProjectMed:Internet-in-a-Box/Buy)
+- [IIAB FAQ](https://wiki.iiab.io/go/FAQ)
+- [Kiwix Hotspot](https://get.kiwix.org/en/solutions/hotspots/kiwix-hotspot/)
+- [PrepperDisk Premium software](https://www.prepperdisk.com/products/premium-software-on-pre-loaded-sd-card)
+- [PrepperDisk pricing article (AOL)](https://www.aol.com/articles/offline-survival-library-fits-pocket-021700723.html)
+- [Internet-in-a-Box installer page](https://d.iiab.io/README.html)
+- [Project NOMAD FAQ](https://www.projectnomad.us/faq)
+- [Personal Codex](https://personal-codex.com)
+- [RACHEL 5](https://worldpossible.org/products/rachel-5-500)
+
+---
 
 ## Hardware Specifications & Cost Breakdown
 
