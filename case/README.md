@@ -2,16 +2,16 @@
 
 A dual-latch, 3D-printed PETG hard shell (~500g) with an internal foam pad. A laminated quick guide is mounted inside the lid with hook-and-loop dots.
 
-## Design files
+## Design Info
 
 | Item | Details |
 | :--- | :--- |
-| Original design | [Snaplock V3](https://makerworld.com/en/models/2168356-snaplock-v3) |
-| Original creator | [Hugo](https://makerworld.com/en/@Hugo) |
-| Original license | MakerWorld Exclusive License (derivatives only on MakerWorld, attribution required, no commercial use) |
+| Design | [Snaplock V3](https://makerworld.com/en/models/2168356-snaplock-v3) |
+| Creator | [Hugo](https://makerworld.com/en/@Hugo) |
+| Original License | MakerWorld Exclusive License (derivatives only on MakerWorld, attribution required, no commercial use) |
 | My version | Same model, customizer values: [W x L x H mm, corner radius]. |
 
-## Print settings
+## Print Settings
 
 | Setting | Value |
 | :--- | :--- |
@@ -22,7 +22,7 @@ A dual-latch, 3D-printed PETG hard shell (~500g) with an internal foam pad. A la
 | Supports | Tree |
 | Weight | ~500g |
 
-## Printed guide
+## Printed Guide
 
 [printed_guide.txt](printed_guide.txt) is the text of the laminated sheet inside the lid. This copy has the password redacted and is the corrected version. The sheet currently in the case is the older one, so it still says "micro-HDMI" and does not have the power-off section. To be reprinted.
 
