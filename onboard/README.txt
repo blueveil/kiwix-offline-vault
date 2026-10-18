@@ -16,7 +16,7 @@ An internet connection is NOT required. Traffic stays strictly on local Wi-Fi.
 
 [ DIRECTORY MAP ]
 --------------------------------------------------------------------------------
-/home/librarian/kiwix-library : Main folder storing all 30 ZIM knowledge archives
+/home/librarian/kiwix-library : Main folder storing all 25+ ZIM knowledge archives
 /usr/local/bin/               : Location of Kiwix binaries (kiwix-serve, kiwix-manage)
 /etc/systemd/system/          : System directory holding kiwix.service configuration
 /etc/NetworkManager/          : Directory holding Wi-Fi network profiles
@@ -62,20 +62,27 @@ sudo systemctl restart kiwix.service
 
 [ NO-WIFI / EMERGENCY BACKUP ACCESS ]
 --------------------------------------------------------------------------------
-If Wi-Fi is unavailable, browse the library directly using an attached screen:
+If Wi-Fi is unavailable, browse the library directly using an attached screen
+and keyboard. The Kiwix server starts by itself at boot, so there is nothing
+to start by hand.
 
-1. Connect display to Mini-HDMI and keyboard to USB OTG port. Log in as 'librarian'.
-2. w3m (terminal browser) is preinstalled. If it was ever removed, reinstalling it
-   needs internet: sudo apt update && sudo apt install w3m -y
-3. Launch console web browser          : w3m http://localhost:8080
+1. Power OFF the Pi. Connect the display to the Mini-HDMI port BEFORE powering
+   on. The Pi may not detect a screen that is plugged in later.
+2. Plug the Micro-USB OTG cable into the port labeled USB (NOT the port
+   labeled PWR IN), then plug the keyboard into the OTG cable.
+3. Power on and wait about 60 seconds for the login prompt.
+4. Log in as 'librarian' with the password you set.
+5. Open the library in the text browser (w3m is preinstalled):
+   w3m http://localhost:8080
+6. If the page does not load, check the server:
+   sudo systemctl status kiwix.service
+7. When finished, shut down and wait for the green LED to stop blinking
+   before cutting power:
+   sudo shutdown -h now
 
-NAVIGATION CHEAT SHEET & LIMITATIONS:
-- Arrow Keys / Tab : Move between links and text fields
-- Enter            : Select a link or submit a search
-- B                : Return to previous page
-- Shift + Q (then y): Quit w3m browser
-- LIMITATION NOTE  : w3m has no JavaScript engine. Text archives (Wikipedia)
-                     work great, but interactive simulations/Gutenberg may not.
+PROJECT GUTENBERG TIP: Its landing page may not display in w3m. Press
+Shift + U, type http://localhost:8080/content/ and press Enter. Then press /
+to search the list.
 
 [ COMMON TROUBLESHOOTING & UTILITIES ]
 --------------------------------------------------------------------------------
