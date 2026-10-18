@@ -4,6 +4,7 @@ An affordable, self-contained, and low-power offline knowledge base project usin
 
 - **Assembled:** 2026-08-15
 - **ZIM Archive Date:** 2024-06 to 2026-08
+- **Storage Used:** 211GB of archives on a 256GB card (229GB usable)
 
 ![Kiwix Vault Open](images/case-open.jpg)
 
@@ -11,8 +12,7 @@ An affordable, self-contained, and low-power offline knowledge base project usin
 
 ## Overview
 
-This project is a standalone offline digital library that serves curated `.zim` archives (Wikipedia, medical/survival databases, literature, etc.) to any device on the same local Wi-Fi network.
-<!-- TODO: confirm client mode vs hotspot after the Pi check (nmcli connection show). Update this paragraph and the Access bullet if it does broadcast its own Wi-Fi. -->
+This project is a standalone offline digital library that serves curated `.zim` archives (Wikipedia, medical/survival databases, literature, etc.) to any device on the same local Wi-Fi network. For cost and how it compares to similar projects, see Project Goal and How It Compares below.
 
 Unlike heavy off-grid platforms or expensive proprietary prepper drives, this project focuses on:
 - **Minimal Power Consumption:** Runs on a 5V USB power supply or portable battery bank using a Raspberry Pi Zero 2 W.
@@ -34,7 +34,7 @@ Similar projects exist. Most are more capable and more expensive, and one (the W
 
 | Project | What it is | Hardware | Approx. cost | Own Wi-Fi | Max users |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **This project** | DIY `kiwix-serve` on a Pi | Pi Zero 2 W, 256GB microSD | ~$81 total, with power supply and cables | No, joins an existing network <!-- TODO: update if the Pi check shows it broadcasts its own Wi-Fi --> | Not tested <!-- TODO: add the load test result --> |
+| **This project** | DIY `kiwix-serve` on a Pi | Pi Zero 2 W, 256GB microSD | ~$81 total, with power supply and cables | No, joins an existing network | Not tested <!-- TODO: add the load test result --> |
 | **Internet-in-a-Box, pre-built** | Assembled unit from the Wikimedia store and Wiki Project Med Foundation | Pi Zero 2 W, 256GB microSD, 3D-printed case | $58 listed (sold out); $83 outside the US or $124.50 in the US when ordered from the partner; no power supply | Yes | 10 (listing) |
 | **Kiwix Hotspot** | Official pre-built device from Kiwix | Pi 5 (4GB), 256GB NVMe SSD, metal case | $300 (bundles $319 to $399) | Yes | Up to 24 |
 | **PrepperDisk** | Pre-built Pi device, or software on an SD card for your own Pi | Pi-based, 256GB or 512GB | ~$200 to $280 (software card alone $165) | Yes | About 20 |
@@ -71,9 +71,7 @@ IIAB's own FAQ says the Zero W and Zero 2 W "work great as learning kiosks, desp
 
 ### Hotspot Option
 
-This build currently joins an existing Wi-Fi network, so it needs a router or a phone hotspot nearby. Turning the Pi into its own hotspot looks possible on the same hardware, because the Wikimedia Internet-in-a-Box does it on a Zero 2 W. I have not tried it on this build. Things to know before switching:
-
-- The Pi has one Wi-Fi radio. As a hotspot it cannot also join another network. IIAB's FAQ says running both at once (AP+STA) is not supported by all firmware and "can sometimes be severely degraded even when it is working."
+This build currently joins an existing Wi-Fi network, so it needs a router or a phone hotspot nearby. The Pi's Wi-Fi chip lists access point mode as supported (checked with `iw list`), so it should be able to act as its own hotspot, and the Wikimedia Internet-in-a-Box does the same on a Pi Zero 2 W. I have not set it up on this build. Things to know before switching:
 - SSH over Wi-Fi to the Pi would stop working while it is a hotspot. Management would need a screen and keyboard, or a connection through the hotspot itself.
 - The address changes. `kiwix.local` may or may not resolve, so a fixed address on the hotspot would be the safe choice.
 - Reports of the plain `nmcli device wifi hotspot` command on a Zero 2 W are mixed. A persistent access point profile is reported to work on Raspberry Pi OS Bookworm.
@@ -87,13 +85,14 @@ How many people can read at once is not tested on this build. What is known:
 - The IIAB FAQ says a Zero (2) W "is able to serve 32 students simultaneously" and that the hotspot on a Pi 4 or 5 supports up to 32 Wi-Fi clients. That is a claim in a FAQ, not a published test.
 - The FAQ names many people running full-text searches of Wikipedia at the same time as the heavy case. Reading articles is much lighter than searching.
 - This build serves devices through a router, so the router handles the Wi-Fi connections. My expectation is that the Pi's CPU, memory and SD card speed set the limit instead, but I have not tested that.
+- At idle the whole system used about 127MB of the roughly 424MB of RAM available to it, with no swap in use.
 <!-- TODO: add the load test result: how many devices, what they did, search times, peak memory and CPU. -->
 
 ### What This Project Gives Up
 
 - No built-in battery, SSD, or admin panel.
 - Fewer simultaneous users than the larger pre-built options, most likely. The Wikimedia unit lists 10 on the same Pi Zero 2 W, which is a reasonable ceiling to expect.
-- No hotspot yet, so it needs a router or similar network nearby. A hotspot is a software setting rather than a hardware limit, but it is untested here. <!-- TODO: update after the Pi check -->
+- No hotspot at the moment, so it needs a router or similar network nearby. The Pi's Wi-Fi supports access point mode, but I have not set it up.
 - No support or warranty. The setup and fixes are on you.
 - The $81 does not include the Wi-Fi network you connect through.
 
@@ -191,18 +190,30 @@ The onboard storage contains a broad array of practical survival databases, educ
 
 The setup is simple: install an OS, add a web server, copy in the archives, and write some plain-text guides.
 
-1. Flash Raspberry Pi OS Lite to the MicroSD card (user `librarian`, hostname `kiwix`, Wi-Fi configured).
-2. Install the Kiwix tools. `kiwix-serve` and `kiwix-manage` live in `/usr/local/bin`.
+1. Flash Raspberry Pi OS Lite (32-bit, Debian 13 “trixie”) to the MicroSD card (user `librarian`, hostname `kiwix`, Wi-Fi configured).
+2. Manually install the Kiwix tools (kiwix-tools 3.8.2, libkiwix 14.2.0, libzim 9.5.0). `kiwix-serve` and `kiwix-manage` live in `/usr/local/bin`.
 3. Download the ZIM files from the Kiwix [library](https://library.kiwix.org) into `~/kiwix-library`.
 4. Build the library index with `kiwix-manage` (see Re-indexing Library below).
 5. Run `kiwix-serve` as a systemd service on port 8080 so it starts at boot.
 6. Add the plain-text guides to the home directory (see Onboard Software & Guides above).
-<!-- TODO: note how the Kiwix tools were installed (release download or apt) and the version from `kiwix-serve --version`. -->
 
 The service file, `/etc/systemd/system/kiwix.service`:
 
 ```ini
-# TODO: paste the output of: cat /etc/systemd/system/kiwix.service
+[Unit]
+Description=Kiwix Offline Server
+After=network.target
+
+[Service]
+Type=simple
+User=librarian
+ExecStart=/usr/local/bin/kiwix-serve --port=8080 --library /home/librarian/kiwix-library/library.xml
+Restart=always
+RestartSec=5
+TimeoutStartSec=180
+
+[Install]
+WantedBy=multi-user.target
 ```
 
 ---
@@ -242,7 +253,7 @@ cd ~/kiwix-library && rm -f library.xml && for f in *.zim; do kiwix-manage libra
 
 To protect against NAND flash charge leakage over multi-year dormant storage:
 - **Periodic Refresh:** Power on the unit once every 1–2 years for a few minutes to refresh flash memory cells.
-- **SD Card Image Clone:** Full .img backup images can be created using Win32DiskImager (Windows) or ApplePi-Baker (Mac) and compressed into .7z archives for long-term storage.
+- **SD Card Image Clone:** Full .img backup images can be created using Win32DiskImager (Windows) or ApplePi-Baker (Mac) and compressed into .7z archives for long-term storage. The raw image is the size of the whole card, and because ZIM files are already compressed, expect the archive to stay close to the 213GB of used data.
 
 ---
 
@@ -255,7 +266,8 @@ To protect against NAND flash charge leakage over multi-year dormant storage:
 - **SD Card Wear:** SD cards degrade over years. Keep a cloned image backup.
 - **Gutenberg Coverage:** The Project Gutenberg collection is a subset of the full library.
 - **Archive Dates:** The ZIM files have different dates, from 2024-06 to 2026-08.
-<!-- TODO: add boot time (power-on to a loading page) and any other measurements from the Pi test. -->
+- **Storage:** The card is about 98% full (6.6GB free), so there is little room for more content or large updates.
+- **Memory:** About 424MB of the Pi's 512MB is usable. At idle the whole system used about 127MB (measured with `free -h`).
 
 ---
 
