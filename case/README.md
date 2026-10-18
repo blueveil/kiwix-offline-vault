@@ -6,7 +6,7 @@ A dual-latch, 3D-printed PETG hard shell (~500g) with an internal foam pad. A la
 
 | Item | Details |
 | :--- | :--- |
-| Design | [Snaplock V3](https://makerworld.com/en/models/2168356-snaplock-v3) |
+| Design | [SnapLock V3](https://makerworld.com/en/models/2168356-snaplock-v3) |
 | Creator | [Hugo](https://makerworld.com/en/@Hugo) |
 | Original License | MakerWorld Exclusive License (derivatives only on MakerWorld, attribution required, no commercial use) |
 | My Version | Same model, resized. |
