@@ -9,7 +9,7 @@ A dual-latch, 3D-printed PETG hard shell (~500g) with an internal foam pad. A la
 | Design | [Snaplock V3](https://makerworld.com/en/models/2168356-snaplock-v3) |
 | Creator | [Hugo](https://makerworld.com/en/@Hugo) |
 | Original License | MakerWorld Exclusive License (derivatives only on MakerWorld, attribution required, no commercial use) |
-| My version | Same model, customizer values: [W x L x H mm, corner radius]. |
+| My Version | Same model, resized. |
 
 ## Print Settings
 
@@ -17,9 +17,9 @@ A dual-latch, 3D-printed PETG hard shell (~500g) with an internal foam pad. A la
 | :--- | :--- |
 | Material | PETG |
 | Printer | Ender 3 Pro |
-| Layer height | 0.16mm |
-| Infill | 100% |
-| Supports | Tree |
+| Layer height | 0.2mm |
+| Wall loops | 4 |
+| Infill | 40% |
 | Weight | ~500g |
 
 ## Printed Guide
